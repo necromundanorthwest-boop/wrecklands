@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: wrecklands
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/content
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: WRECKLANDS_DB
+        value: /data/rooms.sqlite
+    disk:
+      name: wrecklands-data
+      mountPath: /data
+      sizeGB: 1
