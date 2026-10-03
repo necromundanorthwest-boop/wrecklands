@@ -1,0 +1,3 @@
+[
+  {"id":"scrap_run","name":"Scrap Run","mapId":"scrapyard_01","players":2,"scrapToWin":3,"primaryVictory":"collect_and_extract","alternateVictory":"disable_opponent","startingPlayer":"random","turnLimit":null}
+]
