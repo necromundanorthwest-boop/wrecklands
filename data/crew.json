@@ -1,0 +1,5 @@
+[
+  {"id":"driver","name":"Driver","role":"driver","fightTarget":4,"shootTarget":5,"reflexTarget":3,"nerveTarget":4,"maxWounds":2},
+  {"id":"gunner","name":"Gunner","role":"gunner","fightTarget":4,"shootTarget":3,"reflexTarget":4,"nerveTarget":4,"maxWounds":2},
+  {"id":"boarder","name":"Boarder","role":"boarder","fightTarget":3,"shootTarget":5,"reflexTarget":3,"nerveTarget":4,"maxWounds":2}
+]
