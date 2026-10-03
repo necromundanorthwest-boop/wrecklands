@@ -1,0 +1,10 @@
+{
+  "id":"scrapyard_01","name":"Scrapyard 01","width":12,"height":12,
+  "playerAStart":{"x":1,"y":6,"facing":"E"},
+  "playerBStart":{"x":10,"y":6,"facing":"W"},
+  "playerAExtraction":[{"x":0,"y":4},{"x":0,"y":5},{"x":0,"y":6},{"x":0,"y":7},{"x":0,"y":8}],
+  "playerBExtraction":[{"x":11,"y":4},{"x":11,"y":5},{"x":11,"y":6},{"x":11,"y":7},{"x":11,"y":8}],
+  "scrap":[{"id":"scrap_1","x":5,"y":3},{"id":"scrap_2","x":6,"y":6},{"id":"scrap_3","x":5,"y":9}],
+  "blockedTerrain":[{"x":4,"y":4},{"x":4,"y":5},{"x":7,"y":7},{"x":7,"y":8},{"x":5,"y":7},{"x":6,"y":4}],
+  "losBlockingTerrain":[{"x":4,"y":4},{"x":4,"y":5},{"x":7,"y":7},{"x":7,"y":8},{"x":5,"y":7},{"x":6,"y":4}]
+}
