@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WRECKLANDS: SCRAP RUN</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <header class="masthead"><div><p class="eyebrow">TWO PLAYERS · ONE SCRAPYARD</p><h1>WRECKLANDS<span>SCRAP RUN</span></h1></div><span class="phase-label">LOCAL TWO-PLAYER TACTICS</span></header>
+  <main>
+    <section id="lobby" class="panel lobby">
+      <h2>Meet in the scrapyard.</h2>
+      <p>Create a room, then share its six-character code with a second player.</p>
+      <p class="muted">Collect 3 Scrap and reach your extraction edge, or disable the opposing vehicle. Move, then choose one action each activation.</p>
+      <details class="quick-start" open><summary>60-second field guide</summary><ol><li><strong>Win:</strong> collect 3 Scrap and reach your own marked extraction edge, or reduce enemy Integrity to zero.</li><li><strong>Your activation:</strong> optionally change Speed one step → preview and confirm movement → choose one legal action.</li><li><strong>Speed:</strong> Crawl, Cruise, Full Throttle control available maneuvers. Preview is free to reconsider.</li><li><strong>Risk:</strong> at 6+, the server rolls Loss of Control, then Risk returns to 3. Repair removes 2 Risk.</li><li><strong>Scrap:</strong> Scavenge from your cell or an orthogonal neighbor. Ram needs Cruise or faster. Boarding needs adjacency and a 4+ roll.</li></ol><p>Share a code with a friend. Both players see the same server-resolved dice and effects.</p></details><button id="create" class="primary" disabled>Create Game</button>
+      <div class="divider">or join a friend</div>
+      <form id="join-form"><label for="room-input">Room code</label><div class="join-row"><input id="room-input" name="code" maxlength="6" autocomplete="off" spellcheck="false" placeholder="ABC234" required><button id="join" type="submit" disabled>Join Game</button></div></form>
+      <p id="lobby-message" role="status" aria-live="polite">Loading game data…</p>
+    </section>
+    <section id="game" hidden>
+      <div class="room-bar panel"><div>ROOM <strong id="room-code"></strong> <button id="copy" class="small">Copy code</button> <span id="copy-status" role="status"></span></div><div id="identity"></div><button id="leave" class="small">Return to lobby</button></div>
+      <div class="connection-row"><span id="connection" role="status">Connecting…</span><span id="presence"></span></div>
+      <section id="match-summary" class="panel" hidden></section><div class="play-layout">
+        <section class="panel arena"><div class="arena-heading"><h2>Scrapyard 01 · 12 × 12</h2><span id="visible-objective">Collect 3 Scrap and reach your extraction zone.</span></div><svg id="board" viewBox="0 0 520 520" role="img" aria-label="Battlefield"></svg><div class="legend"><span>▲ A / B · vehicles</span><span>▧ blocked terrain</span><span>◇ Scrap</span></div><div id="vehicle-status" class="vehicle-status"></div><div id="crew-status"></div><section id="recent-result" aria-live="polite"><h3>Latest result</h3><p id="recent-text">Waiting for the match to start.</p></section></section>
+        <aside class="panel controls">
+          <p class="eyebrow" id="turn-label"></p><h2 id="turn-status"></h2><p id="instruction"></p>
+          <div id="speed-controls" class="maneuvers"></div>
+          <div id="maneuvers" class="maneuvers"></div>
+          <div id="preview" class="preview" aria-live="polite">Select a maneuver to preview its path.</div>
+          <button id="cancel-preview" class="small" hidden>Clear preview / reconsider Speed</button>
+          <button id="confirm" class="primary wide" disabled>Confirm movement</button>
+          <button id="end" class="wide" disabled hidden>End activation</button>
+          <div id="actions" class="maneuvers"></div>
+          <p id="feedback" role="status" aria-live="polite"></p>
+          <p id="starting-roll" class="muted"></p>
+          <details class="context-help"><summary>Field guide</summary><p class="scope-note">Choose a maneuver, then one legal action. Speed may change one step before movement with an available Driver. Risk 6+ causes Loss of Control. Contact alone causes no impact. Boarder follow-up actions unlock on a later activation begun aboard the enemy.</p>
+            <section id="ram-help"><h3>Ram · Impact</h3><p>Contact alone causes no impact. Choose Ram explicitly at Cruise or Full Throttle when eligible; it consumes your action.</p><p><strong>Impact = attacker Speed + D6 − defender Armor.</strong></p>
+              <table><thead><tr><th>Impact</th><th>Effect on defender</th></tr></thead><tbody><tr><td>0–1</td><td>No damage; push 1 cell if legal.</td></tr><tr><td>2–3</td><td>Lose 1 Integrity.</td></tr><tr><td>4–5</td><td>Lose 2 Integrity and rotate 90° away; a tied left/right rotation uses one server roll.</td></tr><tr><td>6+</td><td>Lose 3 Integrity and gain 1 Risk.</td></tr></tbody></table>
+              <p>Push away from the attacker; a diagonal tie uses the attacker's facing axis. If the push cell is illegal, remain in place and gain 1 Risk.</p></section>
+            <section id="loss-help"><h3>Loss of Control · Risk 6+</h3><p>At Risk ≥ 6, immediately resolve one server D6 and its effect. Then <strong>Risk resets to 3</strong>. Effects in this resolution do not recursively trigger another Loss of Control.</p>
+              <table><thead><tr><th>D6</th><th>Effect</th></tr></thead><tbody><tr><td>1</td><td>Skid 1 cell left relative to facing.</td></tr><tr><td>2</td><td>Skid 1 cell right relative to facing.</td></tr><tr><td>3</td><td>Spin 90° left.</td></tr><tr><td>4</td><td>Spin 90° right.</td></tr><tr><td>5</td><td>Stall: Speed becomes Crawl.</td></tr><tr><td>6</td><td>Impact: lose 1 Integrity.</td></tr></tbody></table><p>If a skid cell is illegal, remain in place and lose 1 Integrity. Actual rolls and results appear in Latest result and history.</p></section>
+          </details>
+        </aside>
+      </div>
+      <p class="objective">Collect all 3 Scrap and reach your own extraction edge (A: left; B: right), or disable the opposing vehicle.</p>
+      <details class="panel history"><summary>Full action and dice history</summary><ol id="action-log"></ol></details>
+      <details class="panel diagnostics"><summary>Synchronization details</summary><p id="revision"></p><p id="checksum"></p><pre id="snapshot"></pre></details>
+    </section>
+  </main>
+  <footer>Original game · Phase 3 release-review build</footer>
+</body>
+</html>

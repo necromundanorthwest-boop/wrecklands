@@ -1,0 +1,3 @@
+[
+  {"id":"scrap_runner","name":"Scrap Runner","maxIntegrity":8,"armor":2,"maxSpeed":3,"startingSpeed":2,"maxRisk":6,"startingRisk":0,"crewCapacity":3,"weaponSlots":1}
+]

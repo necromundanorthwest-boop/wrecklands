@@ -1,0 +1,31 @@
+{
+  "name": "wrecklands-scrap-run",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node src/server/server.js",
+    "test": "node --test tests/rules.test.js tests/server.test.js tests/clarifications.test.js tests/phase2.test.js tests/phase3.test.js",
+    "test:browser": "node tests/browser.test.js",
+    "test:corrections": "node tests/corrections.browser.test.js",
+    "test:clarifications": "node tests/clarifications.browser.test.js",
+    "test:phase2": "node tests/phase2.browser.test.js",
+    "test:phase3": "node tests/phase3.browser.test.js",
+    "profile": "node tests/profile.js"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/necromundanorthwest-boop/wrecklands.git"
+  },
+  "bugs": {
+    "url": "https://github.com/necromundanorthwest-boop/wrecklands/issues"
+  },
+  "homepage": "https://github.com/necromundanorthwest-boop/wrecklands#readme"
+}

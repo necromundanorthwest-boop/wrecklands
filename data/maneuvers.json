@@ -1,0 +1,8 @@
+[
+  {"id":"straight","name":"Straight","minSpeed":1,"maxSpeed":3,"risk":0,"relativePath":[[0,1],[0,1]]},
+  {"id":"veer_left","name":"Veer Left","minSpeed":1,"maxSpeed":3,"risk":0,"relativePath":[[0,1],[-1,1]],"facingChangeDegrees":-90},
+  {"id":"veer_right","name":"Veer Right","minSpeed":1,"maxSpeed":3,"risk":0,"relativePath":[[0,1],[1,1]],"facingChangeDegrees":90},
+  {"id":"turn_left","name":"Turn Left","minSpeed":1,"maxSpeed":2,"risk":1,"relativePath":[[0,1],[-1,0]],"facingChangeDegrees":-90},
+  {"id":"turn_right","name":"Turn Right","minSpeed":1,"maxSpeed":2,"risk":1,"relativePath":[[0,1],[1,0]],"facingChangeDegrees":90},
+  {"id":"boost","name":"Boost","minSpeed":2,"maxSpeed":3,"risk":2,"relativePath":[[0,1],[0,1],[0,1]]}
+]
